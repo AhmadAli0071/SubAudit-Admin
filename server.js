@@ -98,6 +98,11 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Redirect root to admin panel
+app.get('/', (req, res) => {
+  res.redirect('/admin');
+});
+
 // POST /api/admin/login
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body;
