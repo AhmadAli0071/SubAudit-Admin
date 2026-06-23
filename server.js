@@ -22,7 +22,8 @@ const waitlistSchema = new mongoose.Schema({
   subscriptions: [String],
   forgottenChargeHistory: String,
   joinedAt: { type: Date, default: Date.now },
-  queueNumber: { type: Number, unique: true }
+  queueNumber: { type: Number, unique: true },
+  coupon: { type: String, default: 'FOUNDER50' }
 });
 
 const Waitlist = mongoose.model('Waitlist', waitlistSchema);
@@ -33,7 +34,7 @@ app.use('/admin', express.static(path.join(__dirname, 'admin')));
 
 // POST /api/waitlist - receive new signup
 app.post('/api/waitlist', async (req, res) => {
-  const { fullName, email, subscriptions, forgottenChargeHistory } = req.body;
+  const { fullName, email, subscriptions, forgottenChargeHistory, coupon } = req.body;
   if (!fullName || !email) {
     return res.status(400).json({ error: 'Name and email are required' });
   }
@@ -47,7 +48,8 @@ app.post('/api/waitlist', async (req, res) => {
       email,
       subscriptions: subscriptions || [],
       forgottenChargeHistory: forgottenChargeHistory || '',
-      queueNumber: nextQueueNumber
+      queueNumber: nextQueueNumber,
+      coupon: coupon || 'FOUNDER50'
     });
 
     await newSignup.save();

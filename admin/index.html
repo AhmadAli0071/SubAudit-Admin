@@ -236,12 +236,14 @@ function renderTable() {
     const date = new Date(d.joinedAt).toLocaleDateString('en-US', {
       year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
+    const couponCode = d.coupon || 'FOUNDER50';
     return `<tr>
       <td><strong>${d.fullName}</strong></td>
       <td>${d.email}</td>
       <td>${subs}</td>
       <td><span class="badge ${badgeClass}">${d.forgottenChargeHistory}</span></td>
       <td>#${d.queueNumber}</td>
+      <td><span class="subs-tag">${couponCode}</span></td>
       <td>${date}</td>
     </tr>`;
   }).join('');
@@ -255,6 +257,7 @@ function renderTable() {
           <th>Subscriptions</th>
           <th>Charge History</th>
           <th>Queue #</th>
+          <th>Coupon</th>
           <th>Joined</th>
         </tr>
       </thead>
