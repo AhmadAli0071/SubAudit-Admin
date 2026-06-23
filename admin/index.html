@@ -236,7 +236,7 @@ function renderTable() {
     const date = new Date(d.joinedAt).toLocaleDateString('en-US', {
       year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
-    const couponCode = d.coupon || 'FOUNDER50';
+    const couponCode = d.coupon || 'FOUNDER' + d.queueNumber;
     return `<tr>
       <td><strong>${d.fullName}</strong></td>
       <td>${d.email}</td>

@@ -49,7 +49,7 @@ app.post('/api/waitlist', async (req, res) => {
       subscriptions: subscriptions || [],
       forgottenChargeHistory: forgottenChargeHistory || '',
       queueNumber: nextQueueNumber,
-      coupon: coupon || 'FOUNDER50'
+      coupon: 'FOUNDER' + nextQueueNumber
     });
 
     await newSignup.save();
